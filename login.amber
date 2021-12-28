@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  import appbar
+  form.m-4
+    div
+      label.form-label User
+      input.form-control[type="text"][id="user"]
+    div.mt-3
+      label.form-label Password
+      input.form-control[type="password"][id="password"]
+    div.mt-3
+      button.btn.btn-primary Login
