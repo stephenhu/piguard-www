@@ -24,28 +24,50 @@ block content
             h5.card-title Device actions
             p.card-text Warning: these operations could impact other users.
             button.btn.btn-outline-danger Power off
+              span.fa.fa-power-off
             button.btn.btn-outline-warning Reboot
+              span.fa.fa-sync
             button.btn.btn-outline-primary Update
+              span.fa.fa-wrench         
       div.col-lg-6
         div.card
-          div.card-header Wireguard
+          div.card-header Wireguard client
           div.card-body
-            h5.card-title Service is currently:
-              span On
+            h5.card-title.text-success.text-uppercase Connected
             button.btn.btn-outline-warning Restart
-            button.btn.btn-outline-primary Start
+            button.btn.btn-outline-primary[onclick="getServiceApi(); return false;"] Start
             button.btn.btn-outline-danger Stop
     div.row.mt-3
       div.col-lg-6
         div.card
           div.card-header.alert-info Network
           div.card-body
-            h5.card-title Wifi SSID: piguard
-            p.card-text 5 Ghz
+            h5.card-title Wifi configuration
+            table.table.table-striped
+              tbody
+                tr
+                  td SSID
+                  td piguard
+                tr
+                  td Frequency
+                  td 5 Ghz
+                tr
+                  td Channel
+                  td 153
+                tr
+                  td Mode
+                  td 802.11a
+                tr
+                  td Kernel version
+                  td 6.10
+                tr
+                  td Country code
+                  td CN
       div.col-lg-6
         div.card
           div.card-header.alert-info Troubleshooting
           div.card-body
-            h5.card-title Wifi SSID: piguard
-            p.card-text 5 Ghz
+            h5.card-title Logging and diagnostics
+            p.card-text Have an issue with your piguard device?
+            button.btn.btn-danger Factory reset
         
