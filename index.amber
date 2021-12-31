@@ -33,9 +33,9 @@ block content
         div.card
           div.card-header Wireguard client
           div.card-body
-            h5.card-title.text-success.text-uppercase Connected
+            h5.card-title.text-success.text-uppercase[id="wgstate"] Connected
             button.btn.btn-outline-warning Restart
-            button.btn.btn-outline-primary[onclick="getServiceApi(); return false;"] Start
+            button.btn.btn-outline-primary[onclick="getServiceApi('/wireguard'); return false;"] Start
             button.btn.btn-outline-danger Stop
     div.row.mt-3
       div.col-lg-6
