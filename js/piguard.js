@@ -5,6 +5,7 @@ const API_SYSTEM            = "/api/system";
 const SERVICE_WIREGUARD     = "/wireguard";
 const HTTP_GET              = "get";
 const HTTP_POST             = "post";
+const HTTP_PUT              = "put";
 const SYSTEMD_ACTIVATING    = "activating";
 const SYSTEMD_ACTIVE        = "active";
 const SYSTEMD_FAILED        = "failed";
@@ -33,9 +34,9 @@ function setWireguardState(b) {
 } // setWireguardState
 
 
-function getServiceApi(s) {
+function getWireguardState() {
 
-  fetch(API_SERVICES + s, {
+  fetch(API_SERVICES + SERVICE_WIREGUARD, {
     method: HTTP_GET
   })
   .then((response) => {
@@ -47,12 +48,76 @@ function getServiceApi(s) {
     var j = JSON.parse(data);
 
     setWireguardState(j.active);
+
   })
   .catch((error) => {
     console.log(error);
   });
 
-} // getServiceApi
+} // getWireguardState
+
+
+function startWireguard() {
+
+  fetch(API_SERVICES + SERVICE_WIREGUARD + "?method=startunit", {
+    method: HTTP_PUT
+  })
+  .then((response) => {
+    if(response.ok) return response.text();
+  })
+  .then((data) => {
+
+    setWireguardState(SYSTEMD_ACTIVE);
+
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  
+} // startWireguard
+
+
+function stopWireguard() {
+
+  fetch(API_SERVICES + SERVICE_WIREGUARD + "?method=stopunit", {
+    method: HTTP_PUT
+  })
+  .then((response) => {
+    if(response.ok) return response.text();
+  })
+  .then((data) => {
+
+    setWireguardState(SYSTEMD_INACTIVE);
+
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+} // stopWireguard
+
+
+function restartWireguard() {
+
+  fetch(API_SERVICES + SERVICE_WIREGUARD + "?method=restartunit", {
+    method: HTTP_PUT
+  })
+  .then((response) => {
+    if(response.ok) return response.text();
+  })
+  .then((data) => {
+
+    setWireguardState(SYSTEMD_ACTIVATING);
+
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+} // restartWireguard
 
 
 function systemApi(m) {
